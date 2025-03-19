@@ -32,17 +32,6 @@
 
 static const char *TAG = "ESP_ZB_SGP_30_SENSOR";
 
-float_t puissance_moins_six(uint16_t valeur)
-{
-    // Convertir la valeur uint16_t en float
-    float_t valeur_float = (float_t)valeur;
-
-    // Calculer la puissance -6
-    float_t resultat = powf(valeur_float, 1.0f);
-
-    return resultat;
-}
-
 esp_err_t i2c_master_init()
 {
     i2c_config_t conf = {
@@ -255,6 +244,7 @@ static void read_data_task(void *pvParameters)
 
     uint16_t co2 = 0;
     uint16_t tvoc = 0;
+    float_t co2_gui = 0;
 
     while (1)
     {
@@ -266,9 +256,9 @@ static void read_data_task(void *pvParameters)
 
         esp_zb_lock_acquire(portMAX_DELAY);
 
-        float_t tt = puissance_moins_six(co2) / 1000000.0;
-        ESP_LOGI(TAG, "CO2: %.6f ppm", tt);
-        reportValue(ESP_ZB_ZCL_CLUSTER_ID_CARBON_DIOXIDE_MEASUREMENT, ESP_ZB_ZCL_ATTR_CARBON_DIOXIDE_MEASUREMENT_MEASURED_VALUE_ID, &tt);
+        co2_gui = co2 / 1000000.0;
+        ESP_LOGI(TAG, "CO2: %.6f ppm", co2_gui);
+        reportValue(ESP_ZB_ZCL_CLUSTER_ID_CARBON_DIOXIDE_MEASUREMENT, ESP_ZB_ZCL_ATTR_CARBON_DIOXIDE_MEASUREMENT_MEASURED_VALUE_ID, &co2_gui);
 
         esp_zb_lock_release();
         vTaskDelay(pdMS_TO_TICKS(5000));
