@@ -15,7 +15,7 @@
 #include "esp_zigbee_core.h"
 
 /* Zigbee configuration */
-#define INSTALLCODE_POLICY_ENABLE       false   /* enable the install code policy for security */
+#define INSTALLCODE_POLICY_ENABLE       true   /* enable the install code policy for security */
 #define ED_AGING_TIMEOUT                ESP_ZB_ED_AGING_TIMEOUT_64MIN
 #define ED_KEEP_ALIVE                   3000    /* 3000 millisecond */
 #define HA_ESP_SENSOR_ENDPOINT          10      /* esp temperature sensor device endpoint, used for temperature measurement */
