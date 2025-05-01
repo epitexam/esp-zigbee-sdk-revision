@@ -170,8 +170,8 @@ static esp_zb_cluster_list_t *custom_sensor_clusters_create()
     ESP_ERROR_CHECK(esp_zb_cluster_list_add_identify_cluster(cluster_list, esp_zb_zcl_attr_list_create(ESP_ZB_ZCL_CLUSTER_ID_IDENTIFY), ESP_ZB_ZCL_CLUSTER_CLIENT_ROLE));
 
     esp_zb_carbon_dioxide_measurement_cluster_cfg_t co2_meas_cfg = {
-        .measured_value = 0xFFFF,
-        .min_measured_value = 400,
+        .measured_value = 432,
+        .min_measured_value = 0,
         .max_measured_value = 60000,
     };
 
@@ -295,5 +295,5 @@ void app_main(void)
     init_zigbee();
 
     xTaskCreate(esp_zb_task, "Zigbee_main", 4096, NULL, 5, NULL);
-    xTaskCreate(read_data_task, "data_reader", 16384, NULL, 4, NULL);
+    xTaskCreate(read_data_task, "data_reader", 8192, NULL, 4, NULL);
 }
