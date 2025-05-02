@@ -209,7 +209,7 @@ static void configure_cluster_reporting(uint8_t endpoint, uint16_t cluster_id, u
         .u.send_info.max_interval = 0,
         .u.send_info.def_min_interval = 1,
         .u.send_info.def_max_interval = 0,
-        .u.send_info.delta.u16 = 10,
+        .u.send_info.delta.u16 = 1,
         .attr_id = attr_id,
         .manuf_code = ESP_ZB_ZCL_ATTR_NON_MANUFACTURER_SPECIFIC,
     };
