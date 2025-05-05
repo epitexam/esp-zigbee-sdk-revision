@@ -71,7 +71,7 @@ esp_err_t sgp30_measure_iaq(uint16_t *co2, uint16_t *tvoc)
         ESP_LOGE(TAG, "Erreur lors de l'envoi de la commande de mesure IAQ.");
         return err;
     }
-    vTaskDelay(pdMS_TO_TICKS(12));
+    vTaskDelay(pdMS_TO_TICKS(10));
 
     err = sgp30_read_data(data, sizeof(data));
     if (err != ESP_OK)
