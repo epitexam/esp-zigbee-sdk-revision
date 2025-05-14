@@ -171,7 +171,7 @@ static esp_zb_cluster_list_t *custom_sensor_clusters_create()
 
     esp_zb_carbon_dioxide_measurement_cluster_cfg_t co2_meas_cfg = {
         .measured_value = 432,
-        .min_measured_value = 0,
+        .min_measured_value = 400,
         .max_measured_value = 60000,
     };
 
